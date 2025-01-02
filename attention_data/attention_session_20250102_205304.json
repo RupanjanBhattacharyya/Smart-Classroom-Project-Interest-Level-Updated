@@ -1,0 +1,105 @@
+{
+  "session_data": [
+    {
+      "timestamp": "2025-01-02 20:52:33.900016",
+      "pose": [
+        0,
+        0,
+        0
+      ],
+      "attention": 99.9,
+      "eyes_closed_duration": 0,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": null
+    },
+    {
+      "timestamp": "2025-01-02 20:52:39.333068",
+      "pose": [
+        -4.810732746761625,
+        10.865956718325604,
+        -174.84445320434355
+      ],
+      "attention": 99.55000000000001,
+      "eyes_closed_duration": 1.1655776500701904,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": false
+    },
+    {
+      "timestamp": "2025-01-02 20:52:45.241880",
+      "pose": [
+        1.6449994392475205,
+        3.3656160678828186,
+        -177.53137570646027
+      ],
+      "attention": 100,
+      "eyes_closed_duration": 0.7438406944274902,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": false
+    },
+    {
+      "timestamp": "2025-01-02 20:52:50.801393",
+      "pose": [
+        -2.50626000374272,
+        17.078017895458746,
+        -175.3042812345147
+      ],
+      "attention": 100,
+      "eyes_closed_duration": 0,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": false
+    },
+    {
+      "timestamp": "2025-01-02 20:52:56.250528",
+      "pose": [
+        0.6971796357280501,
+        16.14778630296338,
+        -173.95832616072667
+      ],
+      "attention": 100,
+      "eyes_closed_duration": 0.5713992118835449,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": false
+    },
+    {
+      "timestamp": "2025-01-02 20:53:01.596124",
+      "pose": [
+        4.25456275174411,
+        15.831993353834044,
+        -173.3584003644854
+      ],
+      "attention": 100,
+      "eyes_closed_duration": 0,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": false
+    }
+  ],
+  "attention_report": {
+    "session_summary": {
+      "start_time": "2025-01-02 20:52:33",
+      "end_time": "2025-01-02 20:53:01",
+      "duration_minutes": 0.46
+    },
+    "attention_metrics": {
+      "average_attention_percentage": 99.91,
+      "looking_away_duration_seconds": 0.0,
+      "looking_away_percentage": 0.0
+    },
+    "eye_metrics": {
+      "total_eyes_closed_seconds": 2.48,
+      "average_eyes_closed_duration": 0.41,
+      "maximum_eyes_closed_duration": 1.17
+    },
+    "yawn_metrics": {
+      "total_yawn_duration_seconds": 0.0,
+      "average_yawn_duration": 0.0,
+      "maximum_yawn_duration": 0.0
+    },
+    "head_pose_metrics": {
+      "average_angles": {
+        "x_angle": -0.12,
+        "y_angle": 10.55,
+        "z_angle": -145.83
+      }
+    }
+  }
+}

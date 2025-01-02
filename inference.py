@@ -45,7 +45,7 @@ class LocalStorage:
     def __init__(self, session_name):
         self.data = []
         self.session_name = session_name
-        self.output_dir = Path('Attention_data')
+        self.output_dir = Path('attention_data')
         self.output_dir.mkdir(exist_ok=True)
         
     def save(self, data_point):
@@ -214,13 +214,14 @@ class LocalStorage:
                 "attention_report": report
             }
             
+            # Print the report
+            self.print_report(report)
+
             # Save to file
             with open(filename, 'w') as f:
                 json.dump(output_data, f, indent=2)
-            print(f'Session data and report saved to {filename}')
+            print(f'\nAttention detection session data and report saved to {filename}')
             
-            # Print the report
-            self.print_report(report)
         except Exception as e:
             print(f"Error saving to file: {str(e)}")
 class InterestAnalyzer:
@@ -591,10 +592,13 @@ def run_integrated_inference(video_src):
                 report = emotion_detector.generate_report()
                 print("\nEmotion Detection Report:")
                 print(report)
+                filepath_emotion=emotion_detector.save_history_to_json()                
+                print(f"Emotion detection data saved to: {os.path.abspath(filepath_emotion)}\n")
                 plt.show()                
                 fig = emotion_detector.plot_detector_results()
                 if fig:
                     plt.savefig('emotion_analysis.png', dpi=300, bbox_inches='tight')
+                    print("Emotion analysis plot saved as 'emotion_analysis.png'\n")
                     
             if storage is not None and attn_span is not None:
                 plot_attention_metrics(storage, attn_span)
@@ -607,16 +611,15 @@ def run_integrated_inference(video_src):
             
             if storage is not None:
                 storage_data = storage.generate_report()
-                combined_report = {
-                    "attention_metrics": storage_data,
+                interest_report = {
                     "interest_metrics": interest_report
                 }
                 
-                # Save combined report
-                report_path = storage.output_dir / f'{storage.session_name}_combined_report.json'
+                # Save interest report
+                report_path = storage.output_dir / f'interest_report_of_{storage.session_name}.json'
                 with open(report_path, 'w') as f:
-                    json.dump(combined_report, f, indent=2)
-                print(f"\nCombined report saved to {report_path}")
+                    json.dump(interest_report, f, indent=2)
+                print(f"\nInterest report saved to {report_path}")
 
         except Exception as e:
             print(f"Error during cleanup: {e}")

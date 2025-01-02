@@ -1,0 +1,81 @@
+{
+  "session_data": [
+    {
+      "timestamp": "2025-01-02 20:31:44.632439",
+      "pose": [
+        7.911075125388777,
+        23.386750297869348,
+        -172.37861424089908
+      ],
+      "attention": 100,
+      "eyes_closed_duration": 0,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": false
+    },
+    {
+      "timestamp": "2025-01-02 20:31:49.571650",
+      "pose": [
+        8.969560421406229,
+        21.828376671020926,
+        -175.95503689692043
+      ],
+      "attention": 100,
+      "eyes_closed_duration": 0,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": false
+    },
+    {
+      "timestamp": "2025-01-02 20:31:54.533120",
+      "pose": [
+        9.420210080179897,
+        18.960504621029017,
+        -173.31497398769915
+      ],
+      "attention": 100,
+      "eyes_closed_duration": 0,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": false
+    },
+    {
+      "timestamp": "2025-01-02 20:31:59.785512",
+      "pose": [
+        8.251129584418505,
+        19.995713529157012,
+        -173.92475866429794
+      ],
+      "attention": 100,
+      "eyes_closed_duration": 0,
+      "mouth_open_duration": 0,
+      "looking_away(head_pose)": false
+    }
+  ],
+  "attention_report": {
+    "session_summary": {
+      "start_time": "2025-01-02 20:31:44",
+      "end_time": "2025-01-02 20:31:59",
+      "duration_minutes": 0.25
+    },
+    "attention_metrics": {
+      "average_attention_percentage": 100.0,
+      "looking_away_duration_seconds": 0.0,
+      "looking_away_percentage": 0.0
+    },
+    "eye_metrics": {
+      "total_eyes_closed_seconds": 0.0,
+      "average_eyes_closed_duration": 0.0,
+      "maximum_eyes_closed_duration": 0.0
+    },
+    "yawn_metrics": {
+      "total_yawn_duration_seconds": 0.0,
+      "average_yawn_duration": 0.0,
+      "maximum_yawn_duration": 0.0
+    },
+    "head_pose_metrics": {
+      "average_angles": {
+        "x_angle": 8.64,
+        "y_angle": 21.04,
+        "z_angle": -173.89
+      }
+    }
+  }
+}

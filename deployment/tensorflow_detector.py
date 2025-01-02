@@ -70,35 +70,28 @@ class TensorflowDetector(object):
         if not os.path.exists(DATA_DIR):
             os.makedirs(DATA_DIR)
         
-        # Use timestamp in filename to avoid overwrites
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        filepath = os.path.join(DATA_DIR, f'emotion_detection_session_{timestamp}.json')
-
+        # Fixed filename for consolidated report
+        filepath = os.path.join(DATA_DIR, 'emotion_detection_session.json')
+        current_report = self.generate_report()
         
-        # Generate the report first
-        report = self.generate_report()
-        
-        # Load existing data if file exists
+        # Initialize or load existing data
         if os.path.exists(filepath):
-            try:
-                with open(filepath, 'r') as f:
-                    history_data = json.load(f)
-            except json.JSONDecodeError:
-                # If file is corrupted, start fresh
-                history_data = {
-                    'session_start': datetime.now().isoformat(),
-                    'session_data': [],
-                    'report': None
-                }
+            with open(filepath, 'r') as f:
+                history_data = json.load(f)
         else:
-            # Create new history data structure if file doesn't exist
             history_data = {
-                'session_start': datetime.now().isoformat(),
-                'session_data': [],
-                'report': None
+                'sessions': [],
+                'combined_metrics': {}
             }
         
-        # Add new entries to the existing data
+        # Create current session data
+        current_session = {
+            'session_start': datetime.now().isoformat(),
+            'session_data': [],
+            'session_report': current_report
+        }
+        
+        # Add entries to current session
         for i in range(len(self.emotion_history)):
             entry = {
                 'timestamp': datetime.now().isoformat(),
@@ -108,12 +101,40 @@ class TensorflowDetector(object):
                 'valence': float(self.valence_history[i]),
                 'arousal': float(self.arousal_history[i])
             }
-            history_data['session_data'].append(entry)
+            current_session['session_data'].append(entry)
         
-        # Add the report to the JSON structure
-        history_data['report'] = report
+        # Add current session to history
+        history_data['sessions'].append(current_session)
         
-        # Save the updated file
+        # Update combined metrics
+        all_emotions = []
+        all_scores = []
+        all_indices = []
+        all_valence = []
+        all_arousal = []
+        
+        for session in history_data['sessions']:
+            for entry in session['session_data']:
+                all_emotions.append(entry['emotion'])
+                all_scores.append(entry['emotion_score'])
+                all_indices.append(entry['emotion_index'])
+                all_valence.append(entry['valence'])
+                all_arousal.append(entry['arousal'])
+        
+        history_data['combined_metrics'] = {
+            'total_sessions': len(history_data['sessions']),
+            'total_observations': len(all_emotions),
+            'emotion_distribution': dict(Counter(all_emotions)),
+            'average_scores': {
+                'emotion_score': float(np.mean(all_scores)),
+                'emotion_index': float(np.mean(all_indices)),
+                'valence': float(np.mean(all_valence)),
+                'arousal': float(np.mean(all_arousal))
+            },
+            'dominant_emotion': Counter(all_emotions).most_common(1)[0][0],
+            'dominant_emotion_percentage': float(Counter(all_emotions).most_common(1)[0][1] / len(all_emotions))
+        }
+        # Save updated data
         with open(filepath, 'w') as f:
             json.dump(history_data, f, indent=4)
         
