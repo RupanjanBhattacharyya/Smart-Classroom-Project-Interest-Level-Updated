@@ -66,4 +66,4 @@ urllib3==1.26.8
 wincertstore==0.2
 wrapt==1.14.0
 cmake==3.25.2      
-dlib==19.24.2
+dlib-19.22.99-cp37-cp37m-win_amd64.whl
